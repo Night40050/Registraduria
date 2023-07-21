@@ -1,5 +1,3 @@
 from Modelos.AbstractModelo import AbstractModelo
-
-
-class Mesa(AbstractModelo):
+class Partido(AbstractModelo):
     pass

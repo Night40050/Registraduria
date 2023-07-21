@@ -1,4 +1,7 @@
 {
   "url-backend": "127.0.0.1",
-  "port": 9999
+  "port": 9999,
+
+  "data-db-connection" : "mongodb+srv://Night40050:NightConch40050@cluster0.nbc5tsb.mongodb.net/Registraduria?retryWrites=true&w=majority",
+  "name-db" : "Registraduria"
 }

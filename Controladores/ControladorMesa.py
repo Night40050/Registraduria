@@ -1,35 +1,24 @@
+from Repositorios.RepositorioMesa import RepositorioMesa
 from Modelos.Mesa import Mesa
+
 class ControladorMesa():
-#constructor del controlador
     def __init__(self):
-        print("Creando ControladorMesa")
+        self.RepositorioMesa = RepositorioMesa()
 
     def index(self):
-        print("Listar todas las mesas")
-        unaMesa = {
-            "numero": "123",
-            "cantidad_inscritos": "123"
-        }
-        return [unaMesa]
-
+        return self.RepositorioMesa.findAll()
     def create(self, infoMesa):
-        print("Crear una mesa")
-        laMesa = Mesa(infoMesa)
+        nuevaMesa = Mesa(infoMesa)
+        return self.RepositorioMesa.save(nuevaMesa)
+    def show(self, id):
+        laMesa = Mesa(self.RepositorioMesa.findById(id))
         return laMesa.__dict__
 
-    def show(self,id):
-        print("Mostrando mesa con id ", id)
-        laMesa = {
-            "numero": "123",
-            "cantidad_inscritos": "123"
-        }
-        return laMesa
+    def update(self, id, infoMesa):
+        mesaActual = Mesa(self.RepositorioMesa.findById(id))
+        mesaActual.numero = infoMesa["numero"]
+        mesaActual.cantidad_inscritos = infoMesa["cantidad_inscritos"]
+        return self.RepositorioMesa.save(mesaActual)
 
-    def update(self, numero, infoMesa):
-        print("Actualizando mesa numero" , numero)
-        laMesa = Mesa(infoMesa)
-        return laMesa.__dict__
-
-    def delete(self, numero):
-        print("Elimiando mesa numero ", numero)
-        return {"deleted_count": 1}
+    def delete(self, id):
+        return self.RepositorioMesa.delete(id)
